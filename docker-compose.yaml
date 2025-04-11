@@ -2,6 +2,15 @@ version: "3.8"
 name: bazario-docker-compose
 
 services:
+  bazario-web:
+    image: bazario.web
+    container_name: bazario.web
+    build:
+      context: ../Bazario.Web
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:4200"
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
