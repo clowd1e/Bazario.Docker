@@ -1,0 +1,16 @@
+version: "3.8"
+name: bazario-docker-compose
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    volumes:
+      - ./.containers/rabbitmq/queue/data/:/var/lib/rabbitmq
+      - ./.containers/rabbitmq/queue/log/:/var/log/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
