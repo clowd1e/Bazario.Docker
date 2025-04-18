@@ -11,6 +11,16 @@ services:
     ports:
       - "4200:4200"
 
+  bazario-identity-webapi:
+    image: bazario.identity.webapi
+    container_name: bazario.identity.webapi
+    build:
+      context: ../Bazario.Identity/src
+      dockerfile: ./Dockerfile
+    ports:
+      - "5001:5001"
+      - "5002:5002"
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
