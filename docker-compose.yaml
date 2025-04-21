@@ -15,11 +15,24 @@ services:
     image: bazario.identity.webapi
     container_name: bazario.identity.webapi
     build:
-      context: ../Bazario.Identity/src
-      dockerfile: ./Dockerfile
+      context: ..
+      dockerfile: ./Bazario.Identity/src/Dockerfile
     ports:
       - "5001:5001"
       - "5002:5002"
+
+  bazario-identity-postgres:
+    image: postgres:latest
+    container_name: bazario.identity.postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bazario_identity
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.containers/postgres/identity/data/:/var/lib/postgresql/data
+      - ./.containers/postgres/identity/log/:/var/log/postgresql
 
   rabbitmq:
     image: rabbitmq:management
