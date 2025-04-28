@@ -20,6 +20,9 @@ services:
     ports:
       - "5001:5001"
       - "5002:5002"
+    command: /wait-for-it.sh bazario.identity.postgres:5432 -- dotnet Bazario.Identity.WebAPI.dll
+    depends_on:
+      - bazario-identity-postgres
 
   bazario-identity-postgres:
     image: postgres:latest
