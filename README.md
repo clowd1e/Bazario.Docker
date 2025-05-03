@@ -18,8 +18,9 @@ Before you begin, ensure you have the following installed:
 To run this project, it is required to install:
 
 - [Bazario.Web](https://github.com/Bazar-io/Bazario.Web) - Angular project used as the client side web application.
-- [Bazario.AspNetCore.Shared](https://github.com/Bazar-io/Bazario.AspNetCore.Shared) - .NET class common library that is used accross .NET microservice projects.
+- [Bazario.AspNetCore.Shared](https://github.com/Bazar-io/Bazario.AspNetCore.Shared) - .NET common class library that is used accross .NET microservice projects.
 - [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) - ASP.NET Core WebAPI that is responsible for handling user authentication and authorization.
+- [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) - ASP.NET Core WebAPI that is responsible for handling users and admins management.
 
 To clone the Github repositories:
 
@@ -51,7 +52,10 @@ Before launching the application, ensure the following ports are not occupied:
 
 - `5001` - used by the Bazario.Identity WebAPI _(http port)_
 - `5002` - used by the Bazario.Identity WebAPI _(https port)_
+- `5003` - used by the Bazario.Users WebAPI _(http port)_
+- `5004` - used by the Bazario.Users WebAPI _(https port)_
 - `5432` - used by the Bazario.Identity database
+- `5433` - used by the Bazaio.Users database
 - `4200` - used by the client-side application
 - `15672` and `5672` - used by RabbitMQ message broker
 
@@ -69,6 +73,9 @@ After running the project, you can access:
 - **Bazario.Identity API**:
   - [http://localhost:5001/scalar](http://localhost:5001/scalar)
   - [https://localhost:5002/scalar](https://localhost:5002/scalar)
+- **Bazario.Users API**:
+  - [http://localhost:5003/swagger](http://localhost:5003/swagger)
+  - [https://localhost:5004/swagger](https://localhost:5004/swagger)
 
 ## Bugs and Feedback
 
