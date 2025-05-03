@@ -7,6 +7,9 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=p@ssw0rd!
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
 
+      - OwnerSettings__Username=${OWNER_USERNAME}
+      - OwnerSettings__Email=${OWNER_EMAIL}
+      - OwnerSettings__Password=${OWNER_PASSWORD}
       - DbSettings__ConnectionString=${DB_CONNECTION_STRING}
       - JwtSettings__Issuer=${JWT_ISSUER}
       - JwtSettings__Audience=${JWT_AUDIENCE}
