@@ -37,6 +37,19 @@ services:
       - ./.containers/postgres/identity/data/:/var/lib/postgresql/data
       - ./.containers/postgres/identity/log/:/var/log/postgresql
 
+  bazario-users-postgres:
+    image: postgres:latest
+    container_name: bazario.users.postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bazario_users
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./.containers/postgres/users/data/:/var/lib/postgresql/data
+      - ./.containers/postgres/users/log/:/var/log/postgresql
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
