@@ -40,10 +40,11 @@ To clone the Github repositories:
 
 After cloning all the required repositories your local folder should look like:
 
-Bazario/  
-├── Bazario.AspNetCore.Shared/  
-├── Bazario.Docker/  
-├── Bazario.Identity/  
+Bazario/
+├── Bazario.AspNetCore.Shared/
+├── Bazario.Docker/
+├── Bazario.Identity/
+├── Bazario.Users/
 └── Bazario.Web/
 
 ## Running the Application
