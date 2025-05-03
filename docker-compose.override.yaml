@@ -10,7 +10,7 @@ services:
       - OwnerSettings__Username=${OWNER_USERNAME}
       - OwnerSettings__Email=${OWNER_EMAIL}
       - OwnerSettings__Password=${OWNER_PASSWORD}
-      - DbSettings__ConnectionString=${DB_CONNECTION_STRING}
+      - DbSettings__ConnectionString=${IDENTITY_DB_CONNECTION_STRING}
       - JwtSettings__Issuer=${JWT_ISSUER}
       - JwtSettings__Audience=${JWT_AUDIENCE}
       - JwtSettings__SecretKey=${JWT_SECRET_KEY}
@@ -21,6 +21,25 @@ services:
       - "5002:5002"
     volumes:
       - ../Bazario.Identity/src/https:/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  bazario-users-webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5003
+      - ASPNETCORE_HTTPS_PORTS=5004
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=p@ssw0rd!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+
+      - DbSettings__ConnectionString=${USERS_DB_CONNECTION_STRING}
+    ports:
+      - "5003:5003"
+      - "5004:5004"
+    volumes:
+      - ../Bazario.Users/src/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

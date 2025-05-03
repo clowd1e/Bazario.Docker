@@ -37,6 +37,19 @@ services:
       - ./.containers/postgres/identity/data/:/var/lib/postgresql/data
       - ./.containers/postgres/identity/log/:/var/log/postgresql
 
+  bazario-users-webapi:
+    image: bazario.users.webapi
+    container_name: bazario.users.webapi
+    build:
+      context: ..
+      dockerfile: ./Bazario.Users/src/Bazario.Users.WebAPI/Dockerfile
+    ports:
+      - "5003:5003"
+      - "5004:5004"
+    command: /wait-for-it.sh bazario.users.postgres:5432 -- dotnet Bazario.Users.WebAPI.dll
+    depends_on:
+      - bazario-users-postgres
+
   bazario-users-postgres:
     image: postgres:latest
     container_name: bazario.users.postgres
