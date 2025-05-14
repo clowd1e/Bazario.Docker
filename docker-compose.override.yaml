@@ -16,9 +16,15 @@ services:
       - JwtSettings__SecretKey=${JWT_SECRET_KEY}
       - JwtSettings__ExpirationTimeInMinutes=${JWT_EXPIRATION_TIME_IN_MINUTES}
       - JwtSettings__SecurityAlgorithm=${JWT_SECURITY_ALGORITHM}
-    ports:
-      - "5001:5001"
-      - "5002:5002"
+      - MessageBrokerSettings__Host=${RABBITMQ_HOST}
+      - MessageBrokerSettings__User=${RABBITMQ_USER}
+      - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
+      - MessageBrokerSettings__EnableRetryPolicy=${RABBITMQ_ENABLE_RETRY_POLICY}
+      - MessageBrokerSettings__RetryCount=${RABBITMQ_RETRY_COUNT}
+      - MessageBrokerSettings__RetryIntervalMilliseconds=${RABBITMQ_RETRY_INTERVAL_MILLISECONDS}
+    build:
+      args:
+        BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
     volumes:
       - ../Bazario.Identity/src/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
@@ -35,9 +41,9 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
 
       - DbSettings__ConnectionString=${USERS_DB_CONNECTION_STRING}
-    ports:
-      - "5003:5003"
-      - "5004:5004"
+    build:
+      args:
+        BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
     volumes:
       - ../Bazario.Users/src/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro

@@ -12,11 +12,11 @@ services:
       - "4200:4200"
 
   bazario-identity-webapi:
-    image: bazario.identity.webapi
+    image: bazario.identity.webapi:${DOTNET_BUILD_CONFIGURATION:-release}
     container_name: bazario.identity.webapi
     build:
       context: ..
-      dockerfile: ./Bazario.Identity/src/Dockerfile
+      dockerfile: ./Bazario.Identity/src/Bazario.Identity.WebAPI/Dockerfile
     ports:
       - "5001:5001"
       - "5002:5002"
@@ -38,7 +38,7 @@ services:
       - ./.containers/postgres/identity/log/:/var/log/postgresql
 
   bazario-users-webapi:
-    image: bazario.users.webapi
+    image: bazario.users.webapi:${DOTNET_BUILD_CONFIGURATION:-release}
     container_name: bazario.users.webapi
     build:
       context: ..
@@ -63,9 +63,10 @@ services:
       - ./.containers/postgres/users/data/:/var/lib/postgresql/data
       - ./.containers/postgres/users/log/:/var/log/postgresql
 
-  rabbitmq:
+  bazario.queue:
     image: rabbitmq:management
-    container_name: rabbitmq
+    container_name: bazario.queue
+    hostname: bazario-queue
     volumes:
       - ./.containers/rabbitmq/queue/data/:/var/lib/rabbitmq
       - ./.containers/rabbitmq/queue/log/:/var/log/rabbitmq
@@ -73,5 +74,5 @@ services:
       - "15672:15672"
       - "5672:5672"
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}

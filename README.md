@@ -40,12 +40,14 @@ To clone the Github repositories:
 
 After cloning all the required repositories your local folder should look like:
 
+```
 Bazario/
 ├── Bazario.AspNetCore.Shared/
 ├── Bazario.Docker/
 ├── Bazario.Identity/
 ├── Bazario.Users/
 └── Bazario.Web/
+```
 
 ## Running the Application
 
@@ -77,6 +79,24 @@ After running the project, you can access:
 - **Bazario.Users API**:
   - [http://localhost:5003/swagger](http://localhost:5003/swagger)
   - [https://localhost:5004/swagger](https://localhost:5004/swagger)
+
+## Debuging
+
+You can also use debug version of ASP.NET projects such as [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) or [Bazario.Users](https://github.com/Bazar-io/Bazario.Users).
+
+To build dotnet projects with 'Debug' configuration you need to set environment variable `DOTNET_BUILD_CONFIGURATION` to `Debug`. Use the following commands before launching `docker compose up` command or set it in the `.env` file:
+
+### For Windows (PowerShell):
+
+```bash
+$env:DOTNET_BUILD_CONFIGURATION="Debug"
+```
+
+### For Linux/MacOS:
+
+```bash
+export DOTNET_BUILD_CONFIGURATION="Debug"
+```
 
 ## Bugs and Feedback
 
