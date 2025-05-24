@@ -63,7 +63,7 @@ services:
       - ./.containers/postgres/users/data/:/var/lib/postgresql/data
       - ./.containers/postgres/users/log/:/var/log/postgresql
 
-  bazario.queue:
+  bazario-queue:
     image: rabbitmq:management
     container_name: bazario.queue
     hostname: bazario-queue
@@ -76,3 +76,12 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+
+  bazario-mailhog:
+    image: mailhog/mailhog
+    container_name: bazario.mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    volumes:
+      - ./.containers/mailhog/data/:/data/maildir

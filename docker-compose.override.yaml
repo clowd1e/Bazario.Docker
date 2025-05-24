@@ -17,11 +17,11 @@ services:
       - JwtSettings__ExpirationTimeInMinutes=${JWT_EXPIRATION_TIME_IN_MINUTES}
       - JwtSettings__SecurityAlgorithm=${JWT_SECURITY_ALGORITHM}
       - MessageBrokerSettings__Host=${RABBITMQ_HOST}
-      - MessageBrokerSettings__User=${RABBITMQ_USER}
+      - MessageBrokerSettings__PORT=${RABBITMQ_PORT}
+      - MessageBrokerSettings__Username=${RABBITMQ_USER}
       - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
-      - MessageBrokerSettings__EnableRetryPolicy=${RABBITMQ_ENABLE_RETRY_POLICY}
-      - MessageBrokerSettings__RetryCount=${RABBITMQ_RETRY_COUNT}
-      - MessageBrokerSettings__RetryIntervalMilliseconds=${RABBITMQ_RETRY_INTERVAL_MILLISECONDS}
+      - EmailLinkGeneratorSettings__ClientAppUrl=${EMAIL_CLIENT_URL}
+      - EmailLinkGeneratorSettings__EmailConfirmationPath=${EMAIL_EMAIL_CONFIRMATION_PATH}
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
@@ -42,11 +42,9 @@ services:
 
       - DbSettings__ConnectionString=${USERS_DB_CONNECTION_STRING}
       - MessageBrokerSettings__Host=${RABBITMQ_HOST}
-      - MessageBrokerSettings__User=${RABBITMQ_USER}
+      - MessageBrokerSettings__PORT=${RABBITMQ_PORT}
+      - MessageBrokerSettings__Username=${RABBITMQ_USER}
       - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
-      - MessageBrokerSettings__EnableRetryPolicy=${RABBITMQ_ENABLE_RETRY_POLICY}
-      - MessageBrokerSettings__RetryCount=${RABBITMQ_RETRY_COUNT}
-      - MessageBrokerSettings__RetryIntervalMilliseconds=${RABBITMQ_RETRY_INTERVAL_MILLISECONDS}
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
