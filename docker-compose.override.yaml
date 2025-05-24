@@ -54,3 +54,18 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  bazario-notification:
+    environment:
+      - MessageBrokerSettings__Host=${RABBITMQ_HOST}
+      - MessageBrokerSettings__PORT=${RABBITMQ_PORT}
+      - MessageBrokerSettings__Username=${RABBITMQ_USER}
+      - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
+      - SmtpClientSettings__Username=${SMTP_CLIENT_USERNAME}
+      - SmtpClientSettings__Password=${SMTP_CLIENT_PASSWORD}
+      - SmtpClientSettings__Host=${SMTP_CLIENT_HOST}
+      - SmtpClientSettings__Port=${SMTP_CLIENT_PORT}
+      - SmtpClientSettings__EnableSsl=${SMTP_CLIENT_ENABLE_SSL}
+    build:
+      args:
+        BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}

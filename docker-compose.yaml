@@ -23,6 +23,7 @@ services:
     command: /wait-for-it.sh bazario.identity.postgres:5432 -- dotnet Bazario.Identity.WebAPI.dll
     depends_on:
       - bazario-identity-postgres
+      - bazario-queue
 
   bazario-identity-postgres:
     image: postgres:latest
@@ -49,6 +50,7 @@ services:
     command: /wait-for-it.sh bazario.users.postgres:5432 -- dotnet Bazario.Users.WebAPI.dll
     depends_on:
       - bazario-users-postgres
+      - bazario-queue
 
   bazario-users-postgres:
     image: postgres:latest
@@ -62,6 +64,15 @@ services:
     volumes:
       - ./.containers/postgres/users/data/:/var/lib/postgresql/data
       - ./.containers/postgres/users/log/:/var/log/postgresql
+
+  bazario-notification:
+    image: bazario.notification:${DOTNET_BUILD_CONFIGURATION:-release}
+    container_name: bazario.notification
+    build:
+      context: ..
+      dockerfile: ./Bazario.Notification/src/Dockerfile
+    depends_on:
+      - bazario-queue
 
   bazario-queue:
     image: rabbitmq:management
