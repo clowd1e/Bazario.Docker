@@ -21,6 +21,7 @@ To run this project, it is required to install:
 - [Bazario.AspNetCore.Shared](https://github.com/Bazar-io/Bazario.AspNetCore.Shared) - .NET common class library that is used accross .NET microservice projects.
 - [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) - ASP.NET Core WebAPI that is responsible for handling user authentication and authorization.
 - [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) - ASP.NET Core WebAPI that is responsible for handling users and admins management.
+- [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification) - Dotnet Worker Service that is responsible for sending emails.
 
 To clone the Github repositories:
 
@@ -45,6 +46,7 @@ Bazario/
 ├── Bazario.AspNetCore.Shared/
 ├── Bazario.Docker/
 ├── Bazario.Identity/
+├── Bazario.Notification/
 ├── Bazario.Users/
 └── Bazario.Web/
 ```
@@ -82,7 +84,7 @@ After running the project, you can access:
 
 ## Debuging
 
-You can also use debug version of ASP.NET projects such as [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) or [Bazario.Users](https://github.com/Bazar-io/Bazario.Users).
+You can also use debug version of dotnet projects such as [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity), [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) or [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification).
 
 To build dotnet projects with 'Debug' configuration you need to set environment variable `DOTNET_BUILD_CONFIGURATION` to `Debug`. Use the following commands before launching `docker compose up` command or set it in the `.env` file:
 
