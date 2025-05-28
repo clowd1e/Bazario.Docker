@@ -17,7 +17,7 @@ services:
       - JwtSettings__ExpirationTimeInMinutes=${JWT_EXPIRATION_TIME_IN_MINUTES}
       - JwtSettings__SecurityAlgorithm=${JWT_SECURITY_ALGORITHM}
       - MessageBrokerSettings__Host=${RABBITMQ_HOST}
-      - MessageBrokerSettings__PORT=${RABBITMQ_PORT}
+      - MessageBrokerSettings__Port=${RABBITMQ_PORT}
       - MessageBrokerSettings__Username=${RABBITMQ_USER}
       - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
       - EmailLinkGeneratorSettings__ClientAppUrl=${EMAIL_CLIENT_URL}
@@ -25,6 +25,7 @@ services:
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
+    entrypoint: ["./scripts/entrypoints/bazario-identity-webapi-entrypoint.sh"]
     volumes:
       - ../Bazario.Identity/src/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
@@ -42,12 +43,13 @@ services:
 
       - DbSettings__ConnectionString=${USERS_DB_CONNECTION_STRING}
       - MessageBrokerSettings__Host=${RABBITMQ_HOST}
-      - MessageBrokerSettings__PORT=${RABBITMQ_PORT}
+      - MessageBrokerSettings__Port=${RABBITMQ_PORT}
       - MessageBrokerSettings__Username=${RABBITMQ_USER}
       - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
+    entrypoint: ["./scripts/entrypoints/bazario-users-webapi-entrypoint.sh"]
     volumes:
       - ../Bazario.Users/src/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
@@ -69,3 +71,4 @@ services:
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
+    entrypoint: ["./scripts/entrypoints/bazario-notification-entrypoint.sh"]

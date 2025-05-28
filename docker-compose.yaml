@@ -20,7 +20,6 @@ services:
     ports:
       - "5001:5001"
       - "5002:5002"
-    command: /wait-for-it.sh bazario.identity.postgres:5432 -- dotnet Bazario.Identity.WebAPI.dll
     depends_on:
       - bazario-identity-postgres
       - bazario-queue
@@ -47,7 +46,6 @@ services:
     ports:
       - "5003:5003"
       - "5004:5004"
-    command: /wait-for-it.sh bazario.users.postgres:5432 -- dotnet Bazario.Users.WebAPI.dll
     depends_on:
       - bazario-users-postgres
       - bazario-queue

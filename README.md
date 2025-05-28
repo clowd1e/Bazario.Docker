@@ -53,7 +53,7 @@ Bazario/
 
 ## Running the Application
 
-Before launching the application, ensure the following ports are not occupied:
+Before launching the application, ensure that Docker is launched and the following ports are not occupied:
 
 - `5001` - used by the Bazario.Identity WebAPI _(http port)_
 - `5002` - used by the Bazario.Identity WebAPI _(https port)_
@@ -64,11 +64,15 @@ Before launching the application, ensure the following ports are not occupied:
 - `4200` - used by the client-side application
 - `15672` and `5672` - used by RabbitMQ message broker
 
-To run project, Navigate to `Bazario/Bazario.Docker` and execute the following command:
+To run project, navigate to `Bazario/Bazario.Docker` and execute the following command:
 
 ```sh
 docker compose up
 ```
+
+### Notes:
+
+The containers [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity), [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) and [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification) rely on databases and message broker. The containers will wait for these services to be ready before launching the actual program. On first run it might take some time to launch these containers. Use [Docker Logs](https://docs.docker.com/reference/cli/docker/container/logs/) to see the readiness of containers.
 
 ## Accessing the Application
 
