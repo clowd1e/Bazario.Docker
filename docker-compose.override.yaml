@@ -22,6 +22,7 @@ services:
       - MessageBrokerSettings__Password=${RABBITMQ_PASSWORD}
       - EmailLinkGeneratorSettings__ClientAppUrl=${EMAIL_CLIENT_URL}
       - EmailLinkGeneratorSettings__EmailConfirmationPath=${EMAIL_EMAIL_CONFIRMATION_PATH}
+      - EmailLinkGeneratorSettings__AdminEmailConfirmationPath=${EMAIL_ADMIN_EMAIL_CONFIRMATION_PATH}
     build:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
