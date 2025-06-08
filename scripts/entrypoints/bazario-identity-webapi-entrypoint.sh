@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR=$(dirname "$0")
 
 echo "Waiting for Postgres..."
-$SCRIPT_DIR/../wait-for-it.sh bazario-identity-postgres:5432 -t 30
+$SCRIPT_DIR/../wait-for-it.sh bazario-identity-postgres:5432 -t 60
 echo "Postgres is ready"
 
 echo "Waiting for RabbitMQ..."
