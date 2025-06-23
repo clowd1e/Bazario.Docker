@@ -22,6 +22,7 @@ To run this project, it is required to install:
 - [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) - ASP.NET Core WebAPI that is responsible for handling user authentication and authorization.
 - [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) - ASP.NET Core WebAPI that is responsible for handling users and admins management.
 - [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification) - Dotnet Worker Service that is responsible for sending emails.
+- [Bazario.Moderation](https://github.com/Bazar-io/Bazario.Moderation) - FastAPI WebAPI project that runs in the background and is responsible for listings' content moderation.
 
 To clone the Github repositories:
 
@@ -46,6 +47,7 @@ Bazario/
 ├── Bazario.AspNetCore.Shared/
 ├── Bazario.Docker/
 ├── Bazario.Identity/
+├── Bazario.Moderation/
 ├── Bazario.Notification/
 ├── Bazario.Users/
 └── Bazario.Web/
@@ -59,6 +61,8 @@ Before launching the application, ensure that Docker is launched and the followi
 - `5002` - used by the Bazario.Identity WebAPI _(https port)_
 - `5003` - used by the Bazario.Users WebAPI _(http port)_
 - `5004` - used by the Bazario.Users WebAPI _(https port)_
+- `5009` - used by the Bazario.Moderation WebAPI _(http port)_
+- `5010` - used by the Bazario.Moderation WebAPI _(https port)_
 - `5432` - used by the Bazario.Identity database
 - `5433` - used by the Bazaio.Users database
 - `4200` - used by the client-side application
@@ -72,7 +76,14 @@ docker compose up
 
 ### Notes:
 
-The containers [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity), [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) and [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification) rely on databases and message broker. The containers will wait for these services to be ready before launching the actual program. On first run it might take some time to launch these containers. Use [Docker Logs](https://docs.docker.com/reference/cli/docker/container/logs/) to see the readiness of containers.
+The containers:
+
+- [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity)
+- [Bazario.Users](https://github.com/Bazar-io/Bazario.Users)
+- [Bazario.Notification](https://github.com/Bazar-io/Bazario.Notification)
+- [Bazario.Moderation](https://github.com/Bazar-io/Bazario.Moderation)
+
+rely on databases and message broker. The containers will wait for these services to be ready before launching the actual program. On first run it might take some time to launch these containers. Use [Docker Logs](https://docs.docker.com/reference/cli/docker/container/logs/) to see the readiness of containers.
 
 ## Accessing the Application
 
