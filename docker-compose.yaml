@@ -72,6 +72,18 @@ services:
     depends_on:
       - bazario-queue
 
+  bazario-moderation:
+    image: bazario.moderation
+    build:
+      context: ..
+      dockerfile: Bazario.Moderation/Dockerfile
+    container_name: bazario.moderation
+    ports:
+      - "5009:5009"
+      - "5010:5010"
+    depends_on:
+      - bazario-queue
+
   bazario-queue:
     image: rabbitmq:management
     container_name: bazario.queue

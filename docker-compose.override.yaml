@@ -78,3 +78,8 @@ services:
       args:
         BUILD_CONFIGURATION: ${DOTNET_BUILD_CONFIGURATION}
     entrypoint: ["./scripts/entrypoints/bazario-notification-entrypoint.sh"]
+
+  bazario-moderation:
+    environment:
+      AMQP_URL: ${RABBITMQ_AMQP_URL}
+    entrypoint: ["./scripts/entrypoints/bazario-moderation-entrypoint.sh"]  
