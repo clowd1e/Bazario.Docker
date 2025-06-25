@@ -40,6 +40,20 @@ To clone the Github repositories:
     git clone https://github.com/Bazar-io/Bazario.Docker.git
    ```
 
+Or use the `first-setup.sh` script inside Bazario.Docker folder to automatically clone all the required repositories:
+
+On Linux / MacOs / Git Bash for Windows:
+
+```sh
+ ./first-setup.sh
+```
+
+Make sure the script is executable. If not, you can set the permission using:
+
+```sh
+ chmod +x first-setup.sh
+```
+
 After cloning all the required repositories your local folder should look like:
 
 ```
@@ -64,7 +78,7 @@ Before launching the application, ensure that Docker is launched and the followi
 - `5009` - used by the Bazario.Moderation WebAPI _(http port)_
 - `5010` - used by the Bazario.Moderation WebAPI _(https port)_
 - `5432` - used by the Bazario.Identity database
-- `5433` - used by the Bazaio.Users database
+- `5433` - used by the Bazario.Users database
 - `4200` - used by the client-side application
 - `15672` and `5672` - used by RabbitMQ message broker
 
