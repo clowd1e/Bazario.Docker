@@ -85,6 +85,7 @@ Before launching the application, ensure that Docker is launched and the followi
 - `5433` - used by the Bazario.Users database
 - `4200` - used by the client-side application
 - `15672` and `5672` - used by RabbitMQ message broker
+- `6379` - used by Redis
 
 To run project, navigate to `Bazario/Bazario.Docker` and execute the following command:
 

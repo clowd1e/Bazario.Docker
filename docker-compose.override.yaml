@@ -2,7 +2,6 @@ services:
   bazario-gateway:
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      LOGGING_LEVEL_ROOT: DEBUG
 
   bazario-identity-webapi:
     environment:

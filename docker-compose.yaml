@@ -6,8 +6,8 @@ services:
     image: bazario.gateway
     container_name: bazario.gateway
     build:
-      context: ../Bazario.ApiGateway
-      dockerfile: ../Bazario.ApiGateway/Dockerfile
+      context: ..
+      dockerfile: ./Bazario.ApiGateway/Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -15,11 +15,11 @@ services:
       SPRING_REDIS_HOST: ${REDIS_HOST}
       SPRING_REDIS_PORT: ${REDIS_PORT}
     depends_on:
-      - redis
+      - bazario.gateway.redis
 
-  redis:
+  bazario.gateway.redis:
     image: redis:7-alpine
-    container_name: redis
+    container_name: bazario.gateway.redis
     ports:
       - "6379:6379"
 
