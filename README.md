@@ -18,6 +18,7 @@ Before you begin, ensure you have the following installed:
 To run this project, it is required to install:
 
 - [Bazario.Web](https://github.com/Bazar-io/Bazario.Web) - Angular project used as the client side web application.
+- [Bazario.ApiGateway](https://github.com/Bazar-io/Bazario.ApiGateway) - SpringBoot API Gateway project that acts as single entry point to the system, routing requests to backend services.
 - [Bazario.AspNetCore.Shared](https://github.com/Bazar-io/Bazario.AspNetCore.Shared) - .NET common class library that is used accross .NET microservice projects.
 - [Bazario.Identity](https://github.com/Bazar-io/Bazario.Identity) - ASP.NET Core WebAPI that is responsible for handling user authentication and authorization.
 - [Bazario.Users](https://github.com/Bazar-io/Bazario.Users) - ASP.NET Core WebAPI that is responsible for handling users and admins management.
@@ -58,6 +59,7 @@ After cloning all the required repositories your local folder should look like:
 
 ```
 Bazario/
+├── Bazario.ApiGateway/
 ├── Bazario.AspNetCore.Shared/
 ├── Bazario.Docker/
 ├── Bazario.Identity/
@@ -71,6 +73,8 @@ Bazario/
 
 Before launching the application, ensure that Docker is launched and the following ports are not occupied:
 
+- `80` - used by the Bazario.ApiGateway _(http port)_
+- `443` - used by the Bazario.ApiGateway _(https port)_
 - `5001` - used by the Bazario.Identity WebAPI _(http port)_
 - `5002` - used by the Bazario.Identity WebAPI _(https port)_
 - `5003` - used by the Bazario.Users WebAPI _(http port)_

@@ -10,6 +10,7 @@ REPOSITORIES=(
     "https://github.com/Bazar-io/Bazario.Users.git"
     "https://github.com/Bazar-io/Bazario.Notification.git"
     "https://github.com/Bazar-io/Bazario.Moderation.git"
+    "https://github.com/Bazar-io/Bazario.ApiGateway.git"
 )
 
 echo "Cloning repositories into $BASE_DIR..."
@@ -31,5 +32,4 @@ done
 echo
 echo "All repositories cloned successfully."
 
-read -p "Press Enter to continue..."
 sleep 3

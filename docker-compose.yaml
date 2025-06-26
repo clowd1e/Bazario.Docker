@@ -9,6 +9,7 @@ services:
       context: ../Bazario.ApiGateway
       dockerfile: ../Bazario.ApiGateway/Dockerfile
     ports:
+      - "80:80"
       - "443:443"
     environment:
       SPRING_REDIS_HOST: ${REDIS_HOST}
