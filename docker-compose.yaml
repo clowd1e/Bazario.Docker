@@ -2,6 +2,26 @@ version: "3.8"
 name: bazario-docker-compose
 
 services:
+  bazario-gateway:
+    image: bazario.gateway
+    container_name: bazario.gateway
+    build:
+      context: ../Bazario.ApiGateway
+      dockerfile: ../Bazario.ApiGateway/Dockerfile
+    ports:
+      - "443:443"
+    environment:
+      SPRING_REDIS_HOST: ${REDIS_HOST}
+      SPRING_REDIS_PORT: ${REDIS_PORT}
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
   bazario-web:
     image: bazario.web
     container_name: bazario.web
