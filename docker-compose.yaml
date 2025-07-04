@@ -2,26 +2,17 @@ version: "3.8"
 name: bazario-docker-compose
 
 services:
-  bazario-gateway:
-    image: bazario.gateway
-    container_name: bazario.gateway
+  bazario-apigateway:
+    image: bazario.apigateway:${DOTNET_BUILD_CONFIGURATION:-release}
+    container_name: bazario.apigateway
     build:
       context: ..
-      dockerfile: ./Bazario.ApiGateway/Dockerfile
+      dockerfile: ./Bazario.ApiGateway/src/Dockerfile
     ports:
       - "80:80"
       - "443:443"
-    environment:
-      SPRING_REDIS_HOST: ${REDIS_HOST}
-      SPRING_REDIS_PORT: ${REDIS_PORT}
-    depends_on:
-      - bazario.gateway.redis
-
-  bazario.gateway.redis:
-    image: redis:7-alpine
-    container_name: bazario.gateway.redis
-    ports:
-      - "6379:6379"
+    networks:
+      - bazario-network
 
   bazario-web:
     image: bazario.web
@@ -31,6 +22,8 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "4200:4200"
+    networks:
+      - bazario-network
 
   bazario-identity-webapi:
     image: bazario.identity.webapi:${DOTNET_BUILD_CONFIGURATION:-release}
@@ -44,6 +37,8 @@ services:
     depends_on:
       - bazario-identity-postgres
       - bazario-queue
+    networks:
+      - bazario-network
 
   bazario-identity-postgres:
     image: postgres:latest
@@ -57,6 +52,8 @@ services:
     volumes:
       - ./.containers/postgres/identity/data/:/var/lib/postgresql/data
       - ./.containers/postgres/identity/log/:/var/log/postgresql
+    networks:
+      - bazario-network
 
   bazario-users-webapi:
     image: bazario.users.webapi:${DOTNET_BUILD_CONFIGURATION:-release}
@@ -70,6 +67,8 @@ services:
     depends_on:
       - bazario-users-postgres
       - bazario-queue
+    networks:
+      - bazario-network
 
   bazario-users-postgres:
     image: postgres:latest
@@ -83,6 +82,8 @@ services:
     volumes:
       - ./.containers/postgres/users/data/:/var/lib/postgresql/data
       - ./.containers/postgres/users/log/:/var/log/postgresql
+    networks:
+      - bazario-network
 
   bazario-notification:
     image: bazario.notification:${DOTNET_BUILD_CONFIGURATION:-release}
@@ -92,6 +93,8 @@ services:
       dockerfile: ./Bazario.Notification/src/Dockerfile
     depends_on:
       - bazario-queue
+    networks:
+      - bazario-network
 
   bazario-moderation:
     image: bazario.moderation
@@ -104,6 +107,8 @@ services:
       - "5010:5010"
     depends_on:
       - bazario-queue
+    networks:
+      - bazario-network
 
   bazario-queue:
     image: rabbitmq:management
@@ -118,6 +123,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    networks:
+      - bazario-network
 
   bazario-mailhog:
     image: mailhog/mailhog
@@ -127,3 +134,9 @@ services:
       - "8025:8025"
     volumes:
       - ./.containers/mailhog/data/:/data/maildir
+    networks:
+      - bazario-network
+
+networks:
+  bazario-network:
+    driver: bridge
